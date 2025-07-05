@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD","pg_isready","-U","airflow"] 
+      interval: 5s
+      retries: always
+
+docker run -it \
+-e POSTGRES_USER=root \
+-e POSTGRES_PASSWORD=root \
+-e POSTGRES_DB=ny_taxi \
+-v /Users/anukritikulshrestha/Documents/zoomcamp/data-engineering-zoomcamp/week1_basic_and_setup/docker_sql/ny_taxi_postgres_data:/var/lib/postgresql/data \
+-p 5432:5432 \
+postgres:13
+
+docker exec -it e0d816923d74 psql -U root -d ny_taxi
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "anukriti-kulshrestha"
